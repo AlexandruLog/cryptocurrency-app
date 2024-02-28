@@ -1,0 +1,36 @@
+.Chart {
+  background-color: var(--card-background);
+  width: 45%;
+  height: 380px;
+  padding: 15px;
+  border-radius: 10px;
+}
+
+.welcome-chart {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.welcome-chart > img {
+  width: 140px;
+  animation: rotate 30s linear infinite;
+  transition: filter 0.2s ease;
+}
+
+.welcome-chart img:hover {
+  filter: drop-shadow(0 0 12px #05526e);
+
+  cursor: pointer;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}

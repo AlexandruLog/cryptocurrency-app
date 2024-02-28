@@ -1,0 +1,26 @@
+.Buttons {
+  margin-top: 30px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.Buttons > button {
+  padding: 12px 25px;
+  width: 23%;
+  height: 15px;
+  border: 1px solid white;
+  background-color: transparent;
+  color: white;
+  border-radius: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.15s ease;
+}
+
+.Buttons > button:hover {
+  background-color: aliceblue;
+  color: black;
+  cursor: pointer;
+}

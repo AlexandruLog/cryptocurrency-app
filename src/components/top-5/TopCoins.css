@@ -1,0 +1,54 @@
+.TopCoins {
+  background-color: var(--card-background);
+  padding: 12px 24px;
+  width: 100%;
+  margin-top: 30px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.TopCoins > h2 {
+  margin: 12px;
+}
+
+.TopCoins table {
+  width: 100%;
+  text-align: center;
+}
+
+.TopCoins table thead {
+  border-bottom: 1px solid white;
+}
+
+.TopCoins table thead span {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.TopCoins table tbody tr {
+  transition: background-color 0.1s ease;
+}
+
+.TopCoins table tbody tr:hover {
+  background-color: var(--background-color);
+}
+
+.TopCoins table img {
+  width: 35px;
+}
+
+.TopCoins table th {
+  padding: 12px 0;
+}
+
+.TopCoins table td {
+  padding: 18px 0;
+  cursor: pointer;
+}
