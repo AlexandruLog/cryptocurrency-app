@@ -1,19 +1,9 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState } from "react";
 import "./Dropdown.css";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
-import { AppContext } from "../../App";
 
-function Dropdown() {
-  const {
-    coinsList,
-    startIndex,
-    setAvailable,
-    setSelectedCoin,
-    getMarketChart,
-    setDays,
-  } = useContext(AppContext);
-
+function Dropdown(props) {
   const [active, setActive] = useState(false);
 
   function toggleDropdown() {
@@ -31,25 +21,20 @@ function Dropdown() {
       </div>
 
       <div className={`dropdown-items ${active ? "" : "hidden"}`}>
-        {coinsList.map((coin, index) =>
-          index >= startIndex ? (
-            <div
-              className="item"
-              key={index}
-              onClick={() => {
-                setDays(1);
-                setAvailable(true);
-                setSelectedCoin(coin);
-                getMarketChart(coin.id, 1);
-              }}
-            >
-              <img src={coin.image} alt="logo" />
-              <p>{coin.name}</p>
-            </div>
-          ) : (
-            ""
-          )
-        )}
+        {props.coinsList.map((coin, index) => (
+          <div
+            className="item"
+            key={index}
+            onClick={() => {
+              props.setAvailable(true);
+              props.setSelectedCoin(coin);
+              props.getMarketChart(coin.id, 1);
+            }}
+          >
+            <img src={coin.image} alt="logo" />
+            <p>{coin.name}</p>
+          </div>
+        ))}
       </div>
     </div>
   );

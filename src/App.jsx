@@ -1,4 +1,4 @@
-import React, { useEffect, useState, createContext } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 import Dropdown from "./components/dropdown/Dropdown";
 import Details from "./components/details/Details";
@@ -13,16 +13,11 @@ const USD = new Intl.NumberFormat("en-US", {
   currency: "USD",
 });
 
-export const AppContext = createContext();
-
 function App() {
   const [coinsList, setCoinsList] = useState([]);
-  const [startIndex, setStartIndex] = useState(0);
-  const [available, setAvailable] = useState(false);
-  const [topCoinsVisibility, setTopCoinsVisiblity] = useState(false);
-  const [selectedCoin, setSelectedCoin] = useState([]);
-  const [days, setDays] = useState(1);
   const [historyPrices, setHistoryPrices] = useState([]);
+  const [selectedCoin, setSelectedCoin] = useState([]);
+  const [available, setAvailable] = useState(false);
 
   async function getCoinsList() {
     try {
@@ -31,9 +26,6 @@ function App() {
       );
       const data = await response.json();
       setCoinsList(data);
-      setStartIndex(Math.floor(Math.random() * (data.length / 2)));
-      setTopCoinsVisiblity(true);
-      console.log(data);
     } catch (error) {
       console.log(error);
     }
@@ -57,35 +49,38 @@ function App() {
 
   return (
     <div className="App">
-      <AppContext.Provider
-        value={{
-          USD,
-          coinsList,
-          startIndex,
-          available,
-          setAvailable,
-          selectedCoin,
-          setSelectedCoin,
-          getMarketChart,
-          historyPrices,
-          days,
-          setDays,
-          topCoinsVisibility,
-        }}
-      >
-        <div className="navbar">
-          <Dropdown />
+      <div className="navbar">
+        <Dropdown
+          setAvailable={setAvailable}
+          coinsList={coinsList}
+          setSelectedCoin={setSelectedCoin}
+          getMarketChart={getMarketChart}
+        />
+      </div>
+      <div className="content">
+        <div className="statistics">
+          <Details
+            selectedCoin={selectedCoin}
+            getMarketChart={getMarketChart}
+            available={available}
+            USD={USD}
+          />
+          <Chart
+            available={available}
+            selectedCoin={selectedCoin}
+            historyPrices={historyPrices}
+          />
         </div>
-        <div className="content">
-          <div className="statistics">
-            <Details />
-            <Chart />
-          </div>
-          <div className="top-coins">
-            <TopCoins />
-          </div>
+        <div className="top-coins">
+          <TopCoins
+            setAvailable={setAvailable}
+            coinsList={coinsList}
+            setSelectedCoin={setSelectedCoin}
+            getMarketChart={getMarketChart}
+            USD={USD}
+          />
         </div>
-      </AppContext.Provider>
+      </div>
     </div>
   );
 }

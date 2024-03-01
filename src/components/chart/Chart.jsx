@@ -1,28 +1,24 @@
-import React, { useContext } from "react";
+import React from "react";
 import "./Chart.css";
 import { Chart as ChartJS } from "chart.js/auto";
 import { Line } from "react-chartjs-2";
 import reactLogo from "../../assets/react.svg";
-import { AppContext } from "../../App";
 import moment from "moment";
 
-function Chart() {
-  const { available, selectedCoin, historyPrices, days } =
-    useContext(AppContext);
-
+function Chart(props) {
   return (
     <div className="Chart">
-      {available ? (
+      {props.available ? (
         <>
           <Line
             data={{
-              labels: historyPrices.map((data) =>
+              labels: props.historyPrices.map((data) =>
                 moment(data[0]).format("DD MMM hh:mm:ss")
               ),
               datasets: [
                 {
-                  label: selectedCoin.name,
-                  data: historyPrices.map((data) => data[1]),
+                  label: props.selectedCoin.name,
+                  data: props.historyPrices.map((data) => data[1]),
                   fill: true,
                   borderWidth: 1.5,
                   pointRadius: 0.5,
@@ -39,17 +35,6 @@ function Chart() {
                 mode: "index",
               },
               plugins: {
-                title: {
-                  display: true,
-                  text: `${days > 1 ? `Last ${days} days` : "Last 24h"}`,
-                  align: "start",
-                  color: "white",
-                  font: {
-                    size: 18,
-                    family: "Kode Mono",
-                    weight: "bold",
-                  },
-                },
                 legend: {
                   labels: {
                     color: "white",

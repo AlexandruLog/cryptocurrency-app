@@ -1,11 +1,11 @@
-.Buttons {
+.ChartUpdateButtons {
   margin-top: 30px;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
 }
 
-.Buttons > button {
+.ChartUpdateButtons > button {
   padding: 12px 25px;
   width: 23%;
   height: 15px;
@@ -19,7 +19,7 @@
   transition: background-color 0.15s ease;
 }
 
-.Buttons > button:hover {
+.ChartUpdateButtons > button:hover {
   background-color: aliceblue;
   color: black;
   cursor: pointer;
